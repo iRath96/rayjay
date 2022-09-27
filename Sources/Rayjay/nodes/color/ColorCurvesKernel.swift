@@ -4,8 +4,8 @@ public struct ColorCurvesKernel: NodeKernel {
     public static let id = "CURVE_RGB"
 
     public struct CurvePoint: Codable, Equatable {
-        var type: String
-        var location: [Float]
+        public var type: String
+        public var location: [Float]
         
         public init(type: String, location: [Float]) {
             self.type = type

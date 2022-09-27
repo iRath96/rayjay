@@ -4,8 +4,8 @@ public struct ColorRampKernel: NodeKernel {
     public static let id = "VALTORGB"
 
     public struct Element: Codable, Equatable {
-        var position: Float
-        var color: [Float]
+        public var position: Float
+        public var color: [Float]
         
         public init(position: Float, color: [Float]) {
             self.position = position
