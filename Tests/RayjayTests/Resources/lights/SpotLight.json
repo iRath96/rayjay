@@ -1,0 +1,48 @@
+{
+  "materials": {},
+  "shapes": {},
+  "entities": {},
+  "lights": {
+    "Spot": {
+      "type": "SPOT",
+      "material": "Spot",
+      "visibility": {
+        "camera": false,
+        "diffuse": true,
+        "glossy": true,
+        "transmission": false,
+        "volume": false,
+        "shadow": true
+      },
+      "cast_shadows": false,
+      "use_mis": true,
+      "parameters": {
+        "location": [
+          -1.0,
+          10.0,
+          3.0
+        ],
+        "direction": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "power": 100.0,
+        "color": [
+          -1.0,
+          -2.0,
+          1.0
+        ],
+        "radius": 0.125,
+        "spot_size": 0.75,
+        "spot_blend": 0.5
+      }
+    }
+  },
+  "render": {
+    "resolution": {
+      "width": 1920.0,
+      "height": 1080.0
+    }
+  }
+}

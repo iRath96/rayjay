@@ -1,0 +1,42 @@
+{
+  "materials": {},
+  "shapes": {},
+  "entities": {},
+  "lights": {
+    "Area": {
+      "type": "AREA",
+      "material": "Area",
+      "visibility": {
+        "camera": true,
+        "diffuse": false,
+        "glossy": false,
+        "transmission": false,
+        "volume": false,
+        "shadow": false
+      },
+      "cast_shadows": true,
+      "use_mis": false,
+      "parameters": {
+        "transform": [
+          1, 2, 3, 4,
+          1, 3, 3, 7,
+          0, 4, 2, 0
+        ],
+        "power": 5.0,
+        "color": [
+          0.25,
+          0.50,
+          1.00
+        ],
+        "spread": 3.5,
+        "is_circular": false
+      }
+    }
+  },
+  "render": {
+    "resolution": {
+      "width": 1920.0,
+      "height": 1080.0
+    }
+  }
+}

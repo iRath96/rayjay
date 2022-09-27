@@ -1,0 +1,358 @@
+{
+  "materials": {
+    "World": {
+      "World Output": {
+        "type": "OUTPUT_WORLD",
+        "inputs": {
+          "Surface": {
+            "type": "SHADER",
+            "links": [
+              [
+                "Background",
+                "Background"
+              ]
+            ]
+          },
+          "Volume": {
+            "type": "SHADER"
+          }
+        },
+        "parameters": {}
+      },
+      "Sky Texture": {
+        "type": "TEX_SKY",
+        "inputs": {
+          "Vector": {
+            "type": "VECTOR",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        },
+        "parameters": {
+          "air_density": 1.0,
+          "altitude": 0.0,
+          "dust_density": 1.0,
+          "ground_albedo": 0.30000001192092896,
+          "ozone_density": 1.0,
+          "sky_type": "NISHITA",
+          "sun_direction": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "sun_disc": true,
+          "sun_elevation": 0.2617993950843811,
+          "sun_intensity": 1.0,
+          "sun_rotation": 0.0,
+          "sun_size": 0.009512044489383698,
+          "turbidity": 2.200000047683716
+        }
+      },
+      "Background": {
+        "type": "BACKGROUND",
+        "inputs": {
+          "Color": {
+            "type": "RGBA",
+            "links": [
+              [
+                "Sky Texture",
+                "Color"
+              ]
+            ]
+          },
+          "Strength": {
+            "type": "VALUE",
+            "value": 0.05000000074505806
+          },
+          "Weight": {
+            "type": "VALUE",
+            "value": 0.0
+          }
+        },
+        "parameters": {}
+      }
+    },
+    "Material": {
+      "Noise Texture": {
+        "type": "TEX_NOISE",
+        "inputs": {
+          "Vector": {
+            "type": "VECTOR",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "W": {
+            "type": "VALUE",
+            "value": 0.0
+          },
+          "Scale": {
+            "type": "VALUE",
+            "value": 5.0
+          },
+          "Detail": {
+            "type": "VALUE",
+            "value": 2.0
+          },
+          "Roughness": {
+            "type": "VALUE",
+            "value": 0.5
+          },
+          "Distortion": {
+            "type": "VALUE",
+            "value": 0.0
+          }
+        },
+        "parameters": {
+          "noise_dimensions": "3D"
+        }
+      },
+      "Material Output": {
+        "type": "OUTPUT_MATERIAL",
+        "inputs": {
+          "Surface": {
+            "type": "SHADER",
+            "links": [
+              [
+                "Mix Shader",
+                "Shader"
+              ]
+            ]
+          },
+          "Volume": {
+            "type": "SHADER"
+          },
+          "Displacement": {
+            "type": "VECTOR",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "Thickness": {
+            "type": "VALUE",
+            "value": 0.0
+          }
+        },
+        "parameters": {}
+      },
+      "Mix Shader": {
+        "type": "MIX_SHADER",
+        "inputs": {
+          "Fac": {
+            "type": "VALUE",
+            "links": [
+              [
+                "ColorRamp",
+                "Color"
+              ]
+            ]
+          },
+          "Shader": {
+            "type": "SHADER",
+            "links": [
+              [
+                "Diffuse BSDF",
+                "BSDF"
+              ]
+            ]
+          },
+          "Shader_001": {
+            "type": "SHADER",
+            "links": [
+              [
+                "Glossy BSDF",
+                "BSDF"
+              ]
+            ]
+          }
+        },
+        "parameters": {}
+      },
+      "ColorRamp": {
+        "type": "VALTORGB",
+        "inputs": {
+          "Fac": {
+            "type": "VALUE",
+            "links": [
+              [
+                "Noise Texture",
+                "Fac"
+              ]
+            ]
+          }
+        },
+        "parameters": {
+          "color_mode": "RGB",
+          "interpolation": "LINEAR",
+          "hue_interpolation": "NEAR",
+          "elements": [
+            {
+              "position": 0.0,
+              "color": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            },
+            {
+              "position": 1.0,
+              "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ]
+            }
+          ]
+        }
+      },
+      "Diffuse BSDF": {
+        "type": "BSDF_DIFFUSE",
+        "inputs": {
+          "Color": {
+            "type": "RGBA",
+            "value": [
+              0.800000011920929,
+              0.800000011920929,
+              0.800000011920929,
+              1.0
+            ]
+          },
+          "Roughness": {
+            "type": "VALUE",
+            "value": 0.0
+          },
+          "Normal": {
+            "type": "VECTOR",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "Weight": {
+            "type": "VALUE",
+            "value": 0.0
+          }
+        },
+        "parameters": {}
+      },
+      "Glossy BSDF": {
+        "type": "BSDF_GLOSSY",
+        "inputs": {
+          "Color": {
+            "type": "RGBA",
+            "value": [
+              0.800000011920929,
+              0.800000011920929,
+              0.800000011920929,
+              1.0
+            ]
+          },
+          "Roughness": {
+            "type": "VALUE",
+            "value": 0.20000000298023224
+          },
+          "Normal": {
+            "type": "VECTOR",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "Weight": {
+            "type": "VALUE",
+            "value": 0.0
+          }
+        },
+        "parameters": {
+          "distribution": "GGX"
+        }
+      }
+    },
+    "Material.001": {
+      "Material Output": {
+        "type": "OUTPUT_MATERIAL",
+        "inputs": {
+          "Surface": {
+            "type": "SHADER",
+            "links": [
+              [
+                "Emission",
+                "Emission"
+              ]
+            ]
+          },
+          "Volume": {
+            "type": "SHADER"
+          },
+          "Displacement": {
+            "type": "VECTOR",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "Thickness": {
+            "type": "VALUE",
+            "value": 0.0
+          }
+        },
+        "parameters": {}
+      },
+      "Emission": {
+        "type": "EMISSION",
+        "inputs": {
+          "Color": {
+            "type": "RGBA",
+            "links": [
+              [
+                "Blackbody",
+                "Color"
+              ]
+            ]
+          },
+          "Strength": {
+            "type": "VALUE",
+            "value": 100.0
+          },
+          "Weight": {
+            "type": "VALUE",
+            "value": 0.0
+          }
+        },
+        "parameters": {}
+      },
+      "Blackbody": {
+        "type": "BLACKBODY",
+        "inputs": {
+          "Temperature": {
+            "type": "VALUE",
+            "value": 5500.0
+          }
+        },
+        "parameters": {}
+      }
+    }
+  },
+  "shapes": {},
+  "entities": {},
+  "lights": {},
+  "camera": null,
+  "render": {
+    "resolution": {
+      "width": 1920.0,
+      "height": 1080.0
+    }
+  }
+}

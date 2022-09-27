@@ -1,0 +1,41 @@
+{
+  "materials": {},
+  "shapes": {},
+  "entities": {},
+  "lights": {
+    "Point": {
+      "type": "POINT",
+      "material": "Point",
+      "visibility": {
+        "camera": false,
+        "diffuse": true,
+        "glossy": true,
+        "transmission": true,
+        "volume": true,
+        "shadow": true
+      },
+      "cast_shadows": false,
+      "use_mis": false,
+      "parameters": {
+        "location": [
+          0.0,
+          1.0,
+          2.0
+        ],
+        "power": 10.0,
+        "color": [
+          10.0,
+          20.0,
+          30.0
+        ],
+        "radius": 0.25
+      }
+    }
+  },
+  "render": {
+    "resolution": {
+      "width": 1920.0,
+      "height": 1080.0
+    }
+  }
+}

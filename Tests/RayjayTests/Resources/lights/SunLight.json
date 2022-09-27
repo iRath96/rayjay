@@ -1,0 +1,41 @@
+{
+  "materials": {},
+  "shapes": {},
+  "entities": {},
+  "lights": {
+    "Sun": {
+      "type": "SUN",
+      "material": "Sun",
+      "visibility": {
+        "camera": true,
+        "diffuse": true,
+        "glossy": true,
+        "transmission": true,
+        "volume": true,
+        "shadow": true
+      },
+      "cast_shadows": true,
+      "use_mis": true,
+      "parameters": {
+        "direction": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "power": 1.0,
+        "color": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "angle": 0.125
+      }
+    }
+  },
+  "render": {
+    "resolution": {
+      "width": 1920.0,
+      "height": 1080.0
+    }
+  }
+}

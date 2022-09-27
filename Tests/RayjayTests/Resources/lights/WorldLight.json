@@ -1,0 +1,28 @@
+{
+  "materials": {},
+  "shapes": {},
+  "entities": {},
+  "lights": {
+    "World": {
+      "type": "WORLD",
+      "material": "World",
+      "visibility": {
+        "camera": false,
+        "diffuse": true,
+        "glossy": true,
+        "transmission": true,
+        "volume": true,
+        "shadow": true
+      },
+      "cast_shadows": true,
+      "use_mis": true,
+      "parameters": {}
+    }
+  },
+  "render": {
+    "resolution": {
+      "width": 1920.0,
+      "height": 1080.0
+    }
+  }
+}
