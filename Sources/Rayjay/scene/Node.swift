@@ -68,9 +68,9 @@ public struct Node: Encodable, DecodableWithConfiguration, Equatable {
     }
     
     public struct Input: Codable, Equatable {
-        var type: String
-        var links: [Link]?
-        var value: Value?
+        public var type: String
+        public var links: [Link]?
+        public var value: Value?
         
         public init(type: String, links: [Node.Link]? = nil, value: Node.Value? = nil) {
             self.type = type
