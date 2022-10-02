@@ -63,7 +63,7 @@ public struct Material: Encodable, DecodableWithConfiguration, Equatable {
                 activeLinks.append(contentsOf: node.inputs["Shader"]!.links ?? [])
             }
             if fac > 0 {
-                activeLinks.append(contentsOf: node.inputs["Shader.001"]!.links ?? [])
+                activeLinks.append(contentsOf: node.inputs["Shader_001"]!.links ?? [])
             }
             return activeLinks.contains(where: hasSurfaceEmission)
         case is EmissionKernel:
