@@ -65,6 +65,20 @@ public struct Node: Encodable, DecodableWithConfiguration, Equatable {
                 try container.encode(a0)
             }
         }
+        
+        public var scalarValue: Float {
+            switch self {
+            case .scalar(let v): return v
+            case .vector(let v): return v.reduce(0, +) / Float(v.count)
+            }
+        }
+        
+        public var vectorValue: [Float] {
+            switch self {
+            case .scalar(let v): return [ v ]
+            case .vector(let v): return v
+            }
+        }
     }
     
     public struct Input: Codable, Equatable {
