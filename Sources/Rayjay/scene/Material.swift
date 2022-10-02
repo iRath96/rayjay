@@ -72,7 +72,7 @@ public struct Material: Encodable, DecodableWithConfiguration, Equatable {
                 fallback: .scalar(1)).scalarValue
             let color = foldConstants(
                 input: node.inputs["Color"]!,
-                fallback: .vector([ 1, 1, 1 ])).vectorValue
+                fallback: .vector([ 1, 1, 1 ])).vectorValue.prefix(upTo: 3)
             return strength != 0 && color.contains(where: { $0 != 0 })
         case is BsdfPrincipledKernel:
             let strength = foldConstants(
@@ -80,7 +80,7 @@ public struct Material: Encodable, DecodableWithConfiguration, Equatable {
                 fallback: .scalar(1)).scalarValue
             let color = foldConstants(
                 input: node.inputs["Emission"]!,
-                fallback: .vector([ 1, 1, 1 ])).vectorValue
+                fallback: .vector([ 1, 1, 1 ])).vectorValue.prefix(upTo: 3)
             return strength != 0 && color.contains(where: { $0 != 0 })
         case is BsdfAnisotropicKernel,
             is BsdfDiffuseKernel,
