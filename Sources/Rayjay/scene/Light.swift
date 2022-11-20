@@ -5,7 +5,7 @@ public protocol LightKernel: Codable, Equatable {
 }
 
 public enum LightError: Error {
-    case unsupportedLightType
+    case unsupportedLightType(String)
 }
 
 public func equals(_ lhs: Any, _ rhs: Any) -> Bool {
@@ -20,17 +20,7 @@ public func equals(_ lhs: Any, _ rhs: Any) -> Bool {
 }
 
 public struct Light: Encodable, DecodableWithConfiguration, Equatable {
-    public struct DecodingConfiguration {
-        private let kernels: [String: any LightKernel.Type]
-        
-        init(_ kernels: [any LightKernel.Type]) {
-            self.kernels = .init(uniqueKeysWithValues: kernels.map { ($0.id, $0) })
-        }
-        
-        subscript(key: String) -> (any LightKernel.Type)? {
-            return self.kernels[key]
-        }
-    }
+    public typealias DecodingConfiguration = Scene.DecodingConfiguration
     
     public var material: String
     public var visibility: Visibility
@@ -57,8 +47,8 @@ public struct Light: Encodable, DecodableWithConfiguration, Equatable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let type = try container.decode(String.self, forKey: .type)
         
-        guard let type = configuration[type] else {
-            throw LightError.unsupportedLightType
+        guard let type = configuration.lightKernel(key: type) else {
+            throw LightError.unsupportedLightType(type)
         }
         
         material = try container.decode(String.self, forKey: .material)

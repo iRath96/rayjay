@@ -1,7 +1,7 @@
 import Foundation
 
 public struct SeparateColorKernel: NodeKernel {
-    public static let id = "COLOR_SEPARATE"
+    public static let id = "SEPARATE_COLOR"
     
     public var mode: String
     

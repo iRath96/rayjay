@@ -10,6 +10,11 @@ public struct SceneLoader {
         TexSkyKernel.self,
         TexIESKernel.self,
         TexMagicKernel.self,
+        TexVoronoiKernel.self,
+        TexMusgraveKernel.self,
+        TexGradientKernel.self,
+        TexBrickKernel.self,
+        TexWaveKernel.self,
         
         // shader nodes
         BsdfPrincipledKernel.self,
@@ -20,12 +25,14 @@ public struct SceneLoader {
         BsdfTranslucentKernel.self,
         BsdfRefractionKernel.self,
         BsdfAnisotropicKernel.self,
+        BsdfVelvetKernel.self,
         EmissionKernel.self,
         AddShaderKernel.self,
         MixShaderKernel.self,
         FresnelKernel.self,
         LayerWeightKernel.self,
         BackgroundKernel.self,
+        LightFalloffKernel.self,
         
         // color nodes
         ColorRampKernel.self,
@@ -38,6 +45,8 @@ public struct SceneLoader {
         BlackbodyKernel.self,
         BrightnessContrastKernel.self,
         GammaKernel.self,
+        RGBKernel.self,
+        RGBToBWKernel.self,
         
         // vector nodes
         MappingKernel.self,
@@ -56,6 +65,9 @@ public struct SceneLoader {
         NewGeometryKernel.self,
         TexCoordKernel.self,
         UVMapKernel.self,
+        ObjectInfoKernel.self,
+        ParticleInfoKernel.self,
+        VertexColorKernel.self,
         
         // output nodes
         OutputMaterialKernel.self,
@@ -77,19 +89,12 @@ public struct SceneLoader {
     public func makeScene(fromData data: Data, baseURL url: URL? = nil) throws -> Scene {
         let decoder = JSONDecoder()
         decoder.userInfo[.init(rawValue: "configuration")!] = Scene.DecodingConfiguration(
+            baseURL: url,
             nodeKernels: nodeKernels,
             lightKernels: lightKernels
         )
         
-        var scene = try decoder.decode(Scene.self, from: data)
-        if let url = url {
-            for (shapeName, shape) in scene.shapes {
-                /// make all relative paths of shapes absolute
-                let filepath = URL(string: shape.filepath.relativePath, relativeTo: url)!.absoluteURL
-                scene.shapes[shapeName]!.filepath = filepath
-            }
-        }
-        return scene
+        return try decoder.decode(Scene.self, from: data)
     }
     
     public func makeScene(fromURL url: URL) throws -> Scene {

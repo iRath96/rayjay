@@ -5,21 +5,11 @@ public protocol NodeKernel: Codable, Equatable {
 }
 
 public enum NodeError: Error {
-    case unsupportedNodeType
+    case unsupportedNodeType(String)
 }
 
 public struct Node: Encodable, DecodableWithConfiguration, Equatable {
-    public struct DecodingConfiguration {
-        private let kernels: [String: any NodeKernel.Type]
-        
-        init(_ kernels: [any NodeKernel.Type]) {
-            self.kernels = .init(uniqueKeysWithValues: kernels.map { ($0.id, $0) })
-        }
-        
-        subscript(key: String) -> (any NodeKernel.Type)? {
-            return self.kernels[key]
-        }
-    }
+    public typealias DecodingConfiguration = Scene.DecodingConfiguration
     
     public struct Link: Codable, Equatable {
         public var node: String
@@ -127,8 +117,8 @@ public struct Node: Encodable, DecodableWithConfiguration, Equatable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let type = try container.decode(String.self, forKey: .type)
         
-        guard let type = configuration[type] else {
-            throw NodeError.unsupportedNodeType
+        guard let type = configuration.nodeKernel(key: type) else {
+            throw NodeError.unsupportedNodeType(type)
         }
         
         inputs = try container.decode([String: Input].self, forKey: .inputs)
