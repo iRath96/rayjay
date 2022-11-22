@@ -33,6 +33,7 @@ public struct SceneLoader {
         LayerWeightKernel.self,
         BackgroundKernel.self,
         LightFalloffKernel.self,
+        VolumeScatterKernel.self,
         
         // color nodes
         ColorRampKernel.self,
@@ -48,7 +49,7 @@ public struct SceneLoader {
         RGBKernel.self,
         RGBToBWKernel.self,
         
-        // vector nodes
+        // math nodes
         MappingKernel.self,
         NormalMappingKernel.self,
         BumpMappingKernel.self,
@@ -57,6 +58,7 @@ public struct SceneLoader {
         SeparateVectorKernel.self,
         VectorMathKernel.self,
         MathKernel.self,
+        MixKernel.self,
         
         // input nodes
         AttributeKernel.self,
