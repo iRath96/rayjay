@@ -34,6 +34,7 @@ public struct SceneLoader {
         BackgroundKernel.self,
         LightFalloffKernel.self,
         VolumeScatterKernel.self,
+        AmbientOcclusionKernel.self,
         
         // color nodes
         ColorRampKernel.self,
@@ -59,6 +60,7 @@ public struct SceneLoader {
         VectorMathKernel.self,
         MathKernel.self,
         MixKernel.self,
+        MapRangeKernel.self,
         
         // input nodes
         AttributeKernel.self,
@@ -70,6 +72,7 @@ public struct SceneLoader {
         ObjectInfoKernel.self,
         ParticleInfoKernel.self,
         VertexColorKernel.self,
+        NormalKernel.self,
         
         // output nodes
         OutputMaterialKernel.self,

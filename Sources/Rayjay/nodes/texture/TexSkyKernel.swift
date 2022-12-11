@@ -11,8 +11,12 @@ public struct TexSkyKernel: NodeKernel {
     public var ozoneDensity: Float
     public var sunDirection: [Float]
     public var sunDisc: Bool
+    
+    /// in radians [0;pi/2)
     public var sunElevation: Float
     public var sunIntensity: Float
+    
+    /// in radians [0;2pi)
     public var sunRotation: Float
     public var sunSize: Float
     public var turbidity: Float
