@@ -26,6 +26,7 @@ public struct SceneLoader {
         BsdfRefractionKernel.self,
         BsdfAnisotropicKernel.self,
         BsdfVelvetKernel.self,
+        BsdfHairKernel.self,
         EmissionKernel.self,
         AddShaderKernel.self,
         MixShaderKernel.self,

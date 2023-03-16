@@ -88,7 +88,8 @@ public struct Material: Encodable, DecodableWithConfiguration, Equatable {
             is BsdfGlossyKernel,
             is BsdfRefractionKernel,
             is BsdfTranslucentKernel,
-            is BsdfTransparentKernel:
+            is BsdfTransparentKernel,
+            is BsdfHairKernel:
             return false
         default:
             /// must be conservative
