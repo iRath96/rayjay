@@ -35,6 +35,8 @@ public struct SceneLoader {
         BackgroundKernel.self,
         LightFalloffKernel.self,
         VolumeScatterKernel.self,
+        VolumeAbsorptionKernel.self,
+        PrincipledVolumeKernel.self,
         AmbientOcclusionKernel.self,
         
         // color nodes

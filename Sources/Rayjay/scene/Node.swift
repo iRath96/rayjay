@@ -36,23 +36,27 @@ public struct Node: Encodable, DecodableWithConfiguration, Equatable {
     public enum Value: Codable, Equatable {
         case scalar(Float)
         case vector([Float])
+        case string(String)
         
         public init(from decoder: Decoder) throws {
             let container = try decoder.singleValueContainer()
             do {
                 self = .scalar(try container.decode(Float.self))
             } catch {
-                self = .vector(try container.decode([Float].self))
+                do {
+                    self = .vector(try container.decode([Float].self))
+                } catch {
+                    self = .string(try container.decode(String.self))
+                }
             }
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.singleValueContainer()
             switch self {
-            case .scalar(let a0):
-                try container.encode(a0)
-            case .vector(let a0):
-                try container.encode(a0)
+            case .scalar(let a0): try container.encode(a0)
+            case .vector(let a0): try container.encode(a0)
+            case .string(let a0): try container.encode(a0)
             }
         }
         
@@ -60,6 +64,7 @@ public struct Node: Encodable, DecodableWithConfiguration, Equatable {
             switch self {
             case .scalar(let v): return v
             case .vector(let v): return v.reduce(0, +) / Float(v.count)
+            case .string: return 0
             }
         }
         
@@ -67,6 +72,7 @@ public struct Node: Encodable, DecodableWithConfiguration, Equatable {
             switch self {
             case .scalar(let v): return [ v ]
             case .vector(let v): return v
+            case .string: return [ 0 ]
             }
         }
     }
